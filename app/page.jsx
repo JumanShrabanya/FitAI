@@ -1,6 +1,8 @@
 "use client"
 import { useState } from 'react';
 import { Dumbbell, Sparkles, ArrowRight, Circle } from 'lucide-react';
+import AppHeader from "@/components/layout/AppHeader";
+import { useRouter } from 'next/navigation';
 
 export default function Homepage() {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -12,20 +14,11 @@ export default function Homepage() {
     { title: "Visual Examples", desc: "AI images of exercises and meals" }
   ];
 
+  const router=useRouter()
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Minimalist Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm">
-        <div className="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-1 h-8 bg-black"></div>
-            <span className="text-sm font-medium tracking-wider">FITAI</span>
-          </div>
-          <button className="text-sm px-6 py-2 border border-black hover:bg-black hover:text-white transition-all">
-            Launch App
-          </button>
-        </div>
-      </nav>
+      <AppHeader />
 
       {/* Hero - Centered Layout */}
       <section className="pt-24 pb-20 px-8">
@@ -73,8 +66,8 @@ export default function Homepage() {
               Your body is unique. Your plan should be too. Get AI-crafted workout and nutrition plans in seconds.
             </p>
             
-            <div className="flex items-center justify-center gap-4 pt-4">
-              <button className="group bg-black text-white px-8 py-4 flex items-center gap-3 hover:gap-4 transition-all">
+            <div className="flex items-center justify-center gap-4 pt-4 cursor-pointer">
+              <button onClick={()=>{router.push("/plan")}} className=" cursor-pointer group bg-black text-white px-8 py-4 flex items-center gap-3 hover:gap-4 transition-all">
                 <span className="text-sm tracking-wide">CREATE YOUR PLAN</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
